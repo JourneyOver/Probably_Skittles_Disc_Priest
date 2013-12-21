@@ -1,0 +1,8 @@
+## Interface: 50400
+## Title: Probably - Skittles Disc Priest
+## Notes: ProbablyEngine Custom Discipline Priest
+## Author: SourSkittles
+## Dependencies: Probably
+
+#Rotations
+rotations\Disc Priest.lua
