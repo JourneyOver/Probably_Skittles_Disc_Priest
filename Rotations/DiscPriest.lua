@@ -1,7 +1,7 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Discipline Priest Rotation
 -- Created on Dec 21st 2013 5:57 pm
--- Version 0.2
+-- Version 0.3
 
 
 ProbablyEngine.library.register('coreHealing', {
@@ -9,9 +9,9 @@ ProbablyEngine.library.register('coreHealing', {
     return ProbablyEngine.raid.needsHealing(tonumber(percent)) >= count
   end,
   needsDispelled = function(spell)
-    for _, unit in pairs(ProbablyEngine.raid.roster) do
-      if UnitDebuff(unit.unit, spell) then
-        ProbablyEngine.dsl.parsedTarget = unit.unit
+    for unit,_ in pairs(ProbablyEngine.raid.roster) do
+      if UnitDebuff(unit, spell) then
+        ProbablyEngine.dsl.parsedTarget = unit
         return true
       end
     end
@@ -53,7 +53,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "player.health <= 20" 
 	}, "Player" },
 	   {"64901",
-     "player.mana <= 25"}, 
+     "player.mana <= 35"}, 
        --Hymn of Hope  
 	{ "!#5512", "player.health < 45" }, -- Healthstone
 
@@ -71,19 +71,12 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	}, "mouseover" },
  
   --Dispel SoO 
-    { "527", {
-   	  "player.buff(Gift of the Titans)",
-	  "player.mana > 20",
-	  "@coreHealing.needsDispelled('Mark of Arrogance')" 
-	}, nil },
-    { "527", {
-	  "player.mana > 20",
-	  "@coreHealing.needsDispelled('Shadow Word: Bane')"
-	}, nil },
-    { "527", {
-	  "player.mana > 20",
-	  "@coreHealing.needsDispelled('Corrosive Blood')"
- 	}, nil },
+{ "527", { 'player.buff(Gift of the Titans)', '@coreHealing.needsDispelled("Mark of Arrogance")' }, nil },
+    { "527", '@coreHealing.needsDispelled("Shadow Word: Bane")', nil },
+    { "527", '@coreHealing.needsDispelled("Corrosive Blood")', nil },
+    { "527", '@coreHealing.needsDispelled("Harden Flesh")', nil },
+    { "527", '@coreHealing.needsDispelled("Torment")', nil },
+    { "527", '@coreHealing.needsDispelled("Breath of Fire")', nil },
 	
   --Tier6 CD's - CD's
 	{ "121135", {
