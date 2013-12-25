@@ -70,13 +70,16 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "mouseover.spell(2061).range"
 	}, "mouseover" },
  
-  --Dispel SoO 
-{ "527", { 'player.buff(Gift of the Titans)', '@coreHealing.needsDispelled("Mark of Arrogance")' }, nil },
-    { "527", '@coreHealing.needsDispelled("Shadow Word: Bane")', nil },
-    { "527", '@coreHealing.needsDispelled("Corrosive Blood")', nil },
-    { "527", '@coreHealing.needsDispelled("Harden Flesh")', nil },
-    { "527", '@coreHealing.needsDispelled("Torment")', nil },
-    { "527", '@coreHealing.needsDispelled("Breath of Fire")', nil },
+    --Dispel SoO 
+    { "527", { 
+       "player.buff(Gift of the Titans)",
+       "@coreHealing.needsDispelled('Mark of Arrogance')" 
+    }, nil },
+    { "527", "@coreHealing.needsDispelled('Shadow Word: Bane')", nil },
+    { "527", "@coreHealing.needsDispelled('Corrosive Blood')", nil },
+    { "527", "@coreHealing.needsDispelled('Harden Flesh')", nil },
+    { "527", "@coreHealing.needsDispelled('Torment')", nil },
+    { "527", "@coreHealing.needsDispelled('Breath of Fire')", nil },
 	
   --Tier6 CD's - CD's
 	{ "121135", {
