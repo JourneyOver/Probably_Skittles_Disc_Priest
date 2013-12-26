@@ -5,4 +5,5 @@
 ## Dependencies: Probably
 
 #Rotations
-rotations\DiscPriest.lua
+Rotations\DiscPriest.lua
+Libs\Functions.lua

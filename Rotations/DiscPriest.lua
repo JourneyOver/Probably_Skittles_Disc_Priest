@@ -1,7 +1,7 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Discipline Priest Rotation
 -- Created on Dec 21st 2013 5:57 pm
--- Version 0.3
+-- Version 0.4
 
 
 ProbablyEngine.library.register('coreHealing', {
@@ -17,7 +17,6 @@ ProbablyEngine.library.register('coreHealing', {
     end
   end,
 })
-
 
 ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 
@@ -59,7 +58,17 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 
   --Agro
 	{ "586", "target.threat >= 80" }, -- Fade
-	
+		
+  --Immerseus mouseover healing
+    { "!47540", { 
+	  "@skittles.mouseover",
+	  "mouseover.spell(47540).range"
+	}, "mouseover" },  
+	{ "!2061", { --Flash Heal
+	  "@skittles.mouseover",
+	  "mouseover.spell(2061).range"
+	}, "mouseover" },
+
   --Mouse Over Healing
     { "47540", { -- Penance
 	  "toggle.mouseOver",
@@ -135,6 +144,11 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "!player.moving",
 	  "@coreHealing.needsHealing(80, 4)",
 	  "lowest.spell(596).range"
+	}, "lowest" },
+	{ "2050", { -- Heal
+	  "lowest.health <= 65",
+	  "player.mana <= 20",
+	  "lowest.spell(2050).range"
 	}, "lowest" },
     { "2061", { --Flash Heal
 	  "!player.moving",
