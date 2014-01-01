@@ -87,6 +87,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
     { "527", "@coreHealing.needsDispelled('Harden Flesh')", nil },
     { "527", "@coreHealing.needsDispelled('Torment')", nil },
     { "527", "@coreHealing.needsDispelled('Breath of Fire')", nil },
+		
 	
   --Tier6 CD's - CD's
 	{ "121135", {
@@ -125,7 +126,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	}, "tank" },
 	{ "32546", { --Binding Heal
 	  "!tank.player",
-	  "tank.health <= 4",
+	  "tank.health <= 40",
 	  "player.health <= 60",
 	  "tank.spell(32546).range"
 	}, "tank" },
@@ -194,9 +195,9 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "!player.moving",
 	  "target.spell(585).range"
 	}, "target" },
-	{ "!/target [target=focustarget, harm, nodead]", "!target.exists" },
-	{ "!/target [target=focustarget, harm, nodead]", "target.range > 40" },
-	{ "!/focus [@targettarget]" },
+	{ "/focus [@targettarget]" },
+	{ "/target [target=focustarget, harm, nodead]", "!target.exists" },
+	{ "/target [target=focustarget, harm, nodead]", "target.range > 40" },
 },{
   --Out of combat
     { "47540", {
@@ -302,10 +303,10 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Solo", {
 	  "target.spell(32379).range"
 	}, "target" },
 	
-},{	
+},{
     --Out of combat buffs/heals
     { "21562", "!player.buff(21562)" }, --Fortitude
     { "588", "!player.buff(588)" }, --Inner Focus
-	{ "47540", "player.health < 100" }, --Penance    
-
+	{ "47540", "player.health < 100" }, --Penance   
+	
 })
