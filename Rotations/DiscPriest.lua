@@ -28,7 +28,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "player.buff(81661).count = 5"	  --Archangel
 	}},
 	{ "109964", "modifier.lshift" }, --Spirit Shell
-	{ "596", "player.spell(109964).cooldown >= 50", "lowest" }, --Prayer of Healing
+	{ "596", "player.buff(109964)", "lowest" }, --Prayer of Healing
 	
   -- Mana/Survival
   
@@ -78,16 +78,18 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	}, "mouseover" },
  
     --Dispel SoO 
-    { "527", { 
-       "player.buff(Gift of the Titans)",
-       "@coreHealing.needsDispelled('Mark of Arrogance')" 
-    }, nil },
-    { "527", "@coreHealing.needsDispelled('Shadow Word: Bane')", nil },
+   {"527", {
+	  "player.spell(527).casted < 1",
+	  "@coreHealing.needsDispelled('Shadow Word: Bane')"
+	}, nil },
+	{ "527", {
+   	  "player.buff(144363)",
+	  "@coreHealing.needsDispelled('Mark of Arrogance')" 
+	}, nil },
     { "527", "@coreHealing.needsDispelled('Corrosive Blood')", nil },
     { "527", "@coreHealing.needsDispelled('Harden Flesh')", nil },
     { "527", "@coreHealing.needsDispelled('Torment')", nil },
     { "527", "@coreHealing.needsDispelled('Breath of Fire')", nil },
-		
 	
   --Tier6 CD's - CD's
 	{ "121135", {
@@ -195,11 +197,15 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "!player.moving",
 	  "target.spell(585).range"
 	}, "target" },
+	{ "/targetenemy [noexists]", "!target.exists" },
 	{ "/focus [@targettarget]" },
 	{ "/target [target=focustarget, harm, nodead]", "!target.exists" },
 	{ "/target [target=focustarget, harm, nodead]", "target.range > 40" },
+	
+	
 },{
   --Out of combat
+  
     { "47540", {
 	  "toggle.mouseOver",
    	  "mouseover.spell(47540).range"
