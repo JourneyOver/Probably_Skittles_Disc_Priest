@@ -1,7 +1,7 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Discipline Priest Rotation
 -- Created on Dec 21st 2013 5:57 pm
--- Version 0.5
+-- Version 0.8
 
 ProbablyEngine.library.register('coreHealing', {
   needsHealing = function(percent, count)
@@ -49,10 +49,13 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	{ "19236", { --Desperate Prayer
 	  "player.health <= 20" 
 	}, "Player" },
-	   {"64901",
-     "player.mana <= 35"}, 
-       --Hymn of Hope  
-	{ "!#5512", "player.health < 45" }, -- Healthstone
+	{ "64901", { --Hymn of Hope
+	  "player.spell(64901).exists",
+	  "player.mana < 73" 
+	}, "Player" },
+
+  --HEALTHSTONE 
+	{ "#5512", "player.health <= 45" },
 
   --Agro
 	{ "586", "target.threat >= 80" }, -- Fade
