@@ -20,7 +20,7 @@ ProbablyEngine.library.register('coreHealing', {
 ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 
   -- Maintain these buffs
-    { "21562", "!player.buff(21562)" }, -- Fortitude
+    { "21562", "!player.buff(21562).any" }, -- Fortitude
     { "588", "!player.buff(588)" }, -- Inner Fire
     { "89485" }, -- Inner Focus
 	{ "81700", {
@@ -217,7 +217,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "toggle.mouseOver",
   	  "mouseover.spell(2061).range"
 	}, "mouseover" },  --Flash Heal
-    { "21562", "!player.buff(21562)" }, --Fortitude
+    { "21562", "!player.buff(21562).any" }, --Fortitude
     { "588", "!player.buff(588)" }, --Inner Fire
 	{ "47540", {
 	  "lowest.health <= 85", 
@@ -250,7 +250,7 @@ end)
 ProbablyEngine.rotation.register_custom(256, "Skittles Disc Solo", {	
 
   --Buffs
-	{ "21562", "!player.buff(21562)" }, --Fortitude
+	{ "21562", "!player.buff(21562).any" }, --Fortitude
     { "588", "!player.buff(588)" }, --Inner Fire
 	{ "81700", {
 	  "player.spell(81700).exists",
@@ -314,7 +314,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Solo", {
 	
 },{
     --Out of combat buffs/heals
-    { "21562", "!player.buff(21562)" }, --Fortitude
+    { "21562", "!player.buff(21562).any" }, --Fortitude
     { "588", "!player.buff(588)" }, --Inner Focus
 	{ "47540", "player.health < 100" }, --Penance   
 	
