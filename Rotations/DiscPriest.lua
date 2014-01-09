@@ -188,18 +188,18 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	}, "mouseover" },
  
     --Dispel SoO 
-   {"!527", {
+   {"527", {
 	  "player.spell(527).casted < 1",
 	  "@coreHealing.needsDispelled('Shadow Word: Bane')"
 	}, nil },
-	{ "!527", {
+	{ "527", {
    	  "player.buff(144363)",
 	  "@coreHealing.needsDispelled('Mark of Arrogance')" 
 	}, nil },
-    { "!527", "@coreHealing.needsDispelled('Corrosive Blood')", nil },
-    { "!527", "@coreHealing.needsDispelled('Harden Flesh')", nil },
-    { "!527", "@coreHealing.needsDispelled('Torment')", nil },
-    { "!527", "@coreHealing.needsDispelled('Breath of Fire')", nil },
+    { "527", "@coreHealing.needsDispelled('Corrosive Blood')", nil },
+    { "527", "@coreHealing.needsDispelled('Harden Flesh')", nil },
+    { "527", "@coreHealing.needsDispelled('Torment')", nil },
+    { "527", "@coreHealing.needsDispelled('Breath of Fire')", nil },
 	
   --Tier6 CD's - CD's
 	{ "121135", "modifier.lcontrol", "player" },  --Cascade
