@@ -5,13 +5,12 @@ local skittles = {}
 
 --mouseover healing Immerseus - Contaminated Puddle
 function skittles.mouseover()
- if UnitExists("mouseover")				
-	and not UnitIsPlayer("mouseover") then
-		local npcid = tonumber(UnitGUID("mouseover"):sub(6,10), 16) 				
-		if npcid == 71604
-		 then return true 
-        end
- end
+ if UnitExists("mouseover") and not UnitIsPlayer("mouseover") then
+   local npcid = tonumber(UnitGUID("mouseover"):sub(6,10), 16)        
+   if npcid == 71604 then 
+   return true 
+   end
+  end
 end
 
 function skittles.checkRapture()
@@ -23,6 +22,15 @@ function skittles.checkRapture()
   return false
 end
 
+function skittles.bossCheck()
+  if UnitExists("boss1") then
+    local npcId = tonumber(UnitGUID("boss1"):sub(6,10), 16)
+    if npcId == 71454 then
+      return true 
+  end
+  end
+end 
+
 local function findRapture(timeStamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...)
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_ME) and event == 'SPELL_ENERGIZE' then
     local name = select(2, ...)
@@ -31,5 +39,5 @@ local function findRapture(timeStamp, event, hideCaster, sourceGUID, sourceName,
 end
 ProbablyEngine.listener.register('COMBAT_LOG_EVENT_UNFILTERED', findRapture)
 
---- Register library
+-- Register library
 ProbablyEngine.library.register("skittles", skittles)
