@@ -31,6 +31,9 @@ function skittles.bossCheck()
   end
 end 
 
+-- Register library
+ProbablyEngine.library.register("skittles", skittles)
+
 local function findRapture(timeStamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...)
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_ME) and event == 'SPELL_ENERGIZE' then
     local name = select(2, ...)
@@ -38,6 +41,3 @@ local function findRapture(timeStamp, event, hideCaster, sourceGUID, sourceName,
   end
 end
 ProbablyEngine.listener.register('COMBAT_LOG_EVENT_UNFILTERED', findRapture)
-
--- Register library
-ProbablyEngine.library.register("skittles", skittles)

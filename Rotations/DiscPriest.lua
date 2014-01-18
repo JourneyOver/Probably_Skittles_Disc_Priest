@@ -1,7 +1,7 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Discipline Priest Rotation
 -- Created on Dec 21st 2013 5:57 pm
--- Version 1.1
+-- Version 1.0
 
 ProbablyEngine.library.register('coreHealing', {
   needsHealing = function(percent, count)
@@ -17,7 +17,7 @@ ProbablyEngine.library.register('coreHealing', {
   end,
 })
 
-ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
+ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
 	
 	
   -- Maintain these buffs
@@ -45,16 +45,16 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	{ "19236", { --Desperate Prayer
 	  "player.health <= 20" 
 	}, "Player" },
-    { "64901", { --Hymn of hope
-      "player.mana < 73"
+	{ "64901", { --Hymn of hope
+      "player.mana < 70"
     }, "player"},
 
   --HEALTHSTONE 
-	{ "#5512", "player.health <= 45" },
+	{ "#5512", "player.health <= 35" },
 
   --Agro
 	{ "586", "target.threat >= 80" }, -- Fade
-		
+	
   --Immerseus mouseover healing
     { "!47540", { 
 	  "@skittles.mouseover",
@@ -64,7 +64,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "@skittles.mouseover",
 	  "mouseover.spell(2061).range"
 	}, "mouseover" },
-
+	
   --Mouse Over Healing
     { "47540", { -- Penance
 	  "toggle.mouseOver",
@@ -75,7 +75,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "mouseover.spell(2061).range"
 	}, "mouseover" },
  
-    --Dispel SoO 
+  --Dispel SoO 
     {"!527", {
 	  "!modifier.last",
 	  "player.spell(527).casted < 1",
@@ -101,7 +101,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
  	{ "!527", {
 	  "!modifier.last",
 	  "@coreHealing.needsDispelled('Breath of Fire')"
- 	}, nil },,
+ 	}, nil },
 	
   --Tier6 CD's - CD's
 	{ "121135", "modifier.lcontrol", "player" },  --Cascade
@@ -109,7 +109,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	{ "110744", "modifier.lcontrol", "player" }, --Divine Star
 	{ "62618", "modifier.rshift", "ground" }, --Power Word: Barrier
 	{ "10060", "modifier.cooldowns" }, --Power Infusion
-    { "!32375", "modifier.rcontrol", "ground" }, --Mass Dispel
+	{ "!32375", "modifier.rcontrol", "ground" }, --Mass Dispel
 	{ "33206", {
 	  "toggle.painSup",
 	  "lowest.health <= 25 ", 
@@ -120,8 +120,8 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "modifier.lalt",
 	  "lowest.spell(596).range"
 	}, "lowest" },
-
-	-- Malkorok Rotation  
+	
+	-- MALKOROK ROTATION
     {{
     -- Tank
     { "17", { --Power Word: Shield
@@ -211,7 +211,7 @@ ProbablyEngine.rotation.register_custom(256, "Skittles Disc Priest", {
 	  "tank.health <= 95",
 	  "tank.spell(33076).range"
 	}, "tank" },
-		
+	
     
   -- Raid Healing
     { "!596", { --Prayer of Healing /Lucidity proc
@@ -306,7 +306,7 @@ ProbablyEngine.toggle.create(
 end)
 
 
-ProbablyEngine.rotation.register_custom(256, "Skittles Disc Solo", {	
+ProbablyEngine.rotation.register_custom(256, "skittles Disc Solo", {	
 
   --Buffs
 	{ "21562", "!player.buff(21562).any" }, --Fortitude
