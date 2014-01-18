@@ -21,12 +21,18 @@ ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
 	
 	
   -- Maintain these buffs
-    { "21562", "!player.buff(21562).any" }, -- Fortitude
+    { "21562", {
+	  "!player.buff(21562).any",
+   	  "!player.buff(588)"
+	}}, -- Fortitude
     { "588", "!player.buff(588)" }, -- Inner Fire
     { "89485" }, -- Inner Focus
 	{ "81700", "player.buff(81661).count = 5" },--Archangel
 	{ "109964", "modifier.lshift" }, --Spirit Shell
-	{ "596", "player.buff(109964)", "lowest" }, --Prayer of Healing
+	{ "596", {
+	  "player.buff(109964)",
+ 	  "player.buff(109964).duration > 2.5"
+	}, "lowest" }, --Prayer of Healing
 	
   -- Mana/Survival
   
@@ -83,7 +89,7 @@ ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
 	}, nil },
     { "!527", {
 	  "!modifier.last",
-   	  "player.debuff(144359)",
+   	  "player.debuff(146595)",
 	  "@coreHealing.needsDispelled('Mark of Arrogance')" 
 	}, nil },
     { "!527", {
@@ -107,22 +113,27 @@ ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
 	{ "121135", "modifier.lcontrol", "player" },  --Cascade
 	{ "120517", "modifier.lcontrol", "player" }, --Halo
 	{ "110744", "modifier.lcontrol", "player" }, --Divine Star
-	{ "62618", "modifier.rshift", "ground" }, --Power Word: Barrier
+	{ "!62618", "modifier.rshift", "ground" }, --Power Word: Barrier
 	{ "10060", "modifier.cooldowns" }, --Power Infusion
 	{ "!32375", "modifier.rcontrol", "ground" }, --Mass Dispel
-	{ "33206", {
+	{ "!48045", "modifier.ralt", "target" }, -- Mind Sear
+	{ "33206", { --Pain Suppression
 	  "toggle.painSup",
 	  "lowest.health <= 25 ", 
   	  "lowest.spell(33206).range"
-	}, "lowest" },  --Pain Suppression
-	{ "596", { --Prayer of Healing
+	}, "lowest" },
+    { "596", { --Prayer of Healing
 	  "!player.moving",
 	  "modifier.lalt",
 	  "lowest.spell(596).range"
 	}, "lowest" },
+
+	 -- stop casting Thok Deafening Screech
+    { "/stopcasting", "@skittles.stopCast(boss1)" },
 	
 	-- MALKOROK ROTATION
     {{
+
     -- Tank
     { "17", { --Power Word: Shield
 	  "@skittles.checkRapture",
@@ -261,6 +272,8 @@ ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
 	  "!player.moving",
 	  "target.spell(585).range"
 	}, "target" },
+	
+
 	{ "/targetenemy [noexists]", "!target.exists" },
 	{ "/focus [@targettarget]" },
 	{ "/target [target=focustarget, harm, nodead]", "target.range > 40" },
@@ -276,7 +289,10 @@ ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
 	  "toggle.mouseOver",
   	  "mouseover.spell(2061).range"
 	}, "mouseover" },  --Flash Heal
-    { "21562", "!player.buff(21562).any" }, --Fortitude
+    { "21562", {
+	  "!player.buff(21562).any",
+   	  "!player.buff(588)"
+	}}, -- Fortitude
     { "588", "!player.buff(588)" }, --Inner Fire
 	{ "47540", {
 	  "lowest.health <= 85", 

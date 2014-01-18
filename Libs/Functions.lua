@@ -31,8 +31,24 @@ function skittles.bossCheck()
   end
 end 
 
--- Register library
-ProbablyEngine.library.register("skittles", skittles)
+function skittles.stopCast(unit)
+  if UnitBuff("player", 31821) then return false end -- Devo
+  if not unit then unit = "boss1" end
+  local spell, _, _, _, _, endTime = UnitCastingInfo(unit)
+  local stop = false
+  if spell == GetSpellInfo(138763) then stop = true end -- Dark Animus
+  if spell == GetSpellInfo(137457) then stop = true end -- Oondasta
+  if spell == GetSpellInfo(143343) then stop = true end -- Thok
+  if stop then
+    if UnitCastingInfo("player") or UnitChannelInfo("player") then
+	 local CastFinish = endTime / 1000 - GetTime()
+     if CastFinish <= .25 then
+       return true
+     end
+	end
+  end
+  return false
+end
 
 local function findRapture(timeStamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...)
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_ME) and event == 'SPELL_ENERGIZE' then
@@ -41,3 +57,6 @@ local function findRapture(timeStamp, event, hideCaster, sourceGUID, sourceName,
   end
 end
 ProbablyEngine.listener.register('COMBAT_LOG_EVENT_UNFILTERED', findRapture)
+
+-- Register library
+ProbablyEngine.library.register("skittles", skittles)
