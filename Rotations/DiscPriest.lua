@@ -77,13 +77,13 @@ ProbablyEngine.rotation.register_custom(256, "skittles Disc Priest", {
  
   --Dispel SoO 
     {"!527", {
-	  "!modifier.last",
-	  "player.spell(527).casted < 1",
-	  "@coreHealing.needsDispelled('Shadow Word: Bane')"
+	 "!modifier.last",
+	 "player.spell(527).casted < 1",
+	 "@coreHealing.needsDispelled('Shadow Word: Bane')"
 	}, nil },
     { "!527", {
 	  "!modifier.last",
-   	  "player.debuff(144359)"
+   	  "player.debuff(144359)",
 	  "@coreHealing.needsDispelled('Mark of Arrogance')" 
 	}, nil },
     { "!527", {
